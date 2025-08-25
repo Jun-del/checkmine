@@ -1,0 +1,44 @@
+# Operating System and Editor Specific
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.sublime-workspace
+*.swp
+
+# Build Artifacts and Dependencies
+build/
+dist/
+out/
+target/
+node_modules/
+vendor/
+*.log
+*.tmp
+*.bak
+*.orig
+
+# Sensitive Information and User-Specific Files
+.env
+.env.*
+config.local.php
+*.key
+*.pem
+
+# IDE-specific files (examples)
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Visual Studio
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
