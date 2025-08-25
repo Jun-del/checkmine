@@ -1,0 +1,29 @@
+name: Security audit
+
+on:
+  schedule:
+    # daily @ 00:00 UTC
+    - cron: "0 0 * * *"
+  push:
+    paths:
+      - "server/Cargo.toml"
+      - "server/Cargo.lock"
+      - ".github/workflows/audit.yml"
+  pull_request:
+    paths:
+      - "server/Cargo.toml"
+      - "server/Cargo.lock"
+      - ".github/workflows/audit.yml"
+
+jobs:
+  security_audit:
+    name: Audit
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server
+    steps:
+      - uses: actions/checkout@v4
+      - uses: taiki-e/install-action@cargo-deny
+      - name: Scan for vulnerabilities
+        run: cargo deny check advisories
