@@ -2,7 +2,6 @@ use axum::{Router, http::StatusCode, routing::get};
 use serde::Deserialize;
 use std::net::{Ipv4Addr, SocketAddr};
 use tokio::signal;
-use tracing_subscriber;
 
 fn default_port() -> u16 {
     3000
@@ -14,12 +13,6 @@ struct ServerConfig {
     port: u16,
 }
 
-#[derive(Debug, Deserialize)]
-struct AppConfig {
-    #[serde(default)]
-    server: ServerConfig,
-}
-
 impl Default for ServerConfig {
     fn default() -> Self {
         Self {
@@ -28,12 +21,10 @@ impl Default for ServerConfig {
     }
 }
 
-impl Default for AppConfig {
-    fn default() -> Self {
-        Self {
-            server: ServerConfig::default(),
-        }
-    }
+#[derive(Debug, Deserialize, Default)]
+struct AppConfig {
+    #[serde(default)]
+    server: ServerConfig,
 }
 
 #[tokio::main]
